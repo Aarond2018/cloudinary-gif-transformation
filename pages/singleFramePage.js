@@ -7,10 +7,10 @@ export default function Home() {
   const [transformedImg, setTransformedImg] = useState("")
   const [reqStatus, setReqStatus] = useState("")
 
-  const getTransformedImg = async () => {
+  const getSingleFrame = async () => {
     setReqStatus("loading...")
     try {
-      const response = await axios.get("/api/transformGif")
+      const response = await axios.get("/api/getSingleFrame")
       const imgUrl = /'(.+)'/.exec(response.data)[1]
       setTransformedImg(imgUrl)
       setReqStatus("Done..")
@@ -22,8 +22,8 @@ export default function Home() {
 
   return (
     <main className={styles.main}>
-      <h1>Transform Gif</h1>
-      <MainView reqStatus={reqStatus} transformedImg={transformedImg} callFunction={getTransformedImg} />
+      <h1>Get single frame</h1>
+      <MainView reqStatus={reqStatus} transformedImg={transformedImg} callFunction={getSingleFrame} />
     </main>
   )
 }
